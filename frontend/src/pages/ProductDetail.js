@@ -43,7 +43,7 @@ const ProductDetail = () => {
     <div className="container mx-auto px-4 py-8">
       <button
         onClick={() => navigate(-1)}
-        className="mb-6 text-primary-600 hover:text-primary-700 flex items-center"
+        className="mb-6 text-brand-green hover:text-brand-green-dark flex items-center font-semibold"
       >
         ← Back
       </button>
@@ -68,8 +68,8 @@ const ProductDetail = () => {
           <p className="text-gray-600 mb-6">{product.description}</p>
 
           <div className="mb-6">
-            <span className="text-4xl font-bold text-primary-600">
-              ${product.price.toFixed(2)}
+            <span className="text-4xl font-bold text-brand-green">
+              ₹{Math.round(product.price * 83).toLocaleString('en-IN')}
             </span>
           </div>
 
@@ -105,7 +105,7 @@ const ProductDetail = () => {
 
               <button
                 onClick={handleAddToCart}
-                className="w-full bg-primary-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-700 transition"
+                className="w-full bg-brand-green text-white py-3 rounded-xl font-bold hover:bg-brand-green-dark transition shadow-md"
               >
                 Add to Cart
               </button>

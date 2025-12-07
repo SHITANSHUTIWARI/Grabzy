@@ -32,12 +32,12 @@ const ProductCard = ({ product }) => {
           {product.description}
         </p>
         
-        <div className="flex items-center justify-between">
-          <span className="text-2xl font-bold text-primary-600">
-            ${product.price.toFixed(2)}
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-2xl font-bold text-gray-900">
+            ₹{Math.round(product.price * 83).toLocaleString('en-IN')}
           </span>
           
-          <span className="text-sm text-gray-500">
+          <span className="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded">
             Stock: {product.stock}
           </span>
         </div>
@@ -45,10 +45,10 @@ const ProductCard = ({ product }) => {
         <button
           onClick={handleAddToCart}
           disabled={product.stock === 0}
-          className={`mt-4 w-full py-2 px-4 rounded-lg font-semibold transition ${
+          className={`w-full py-3 px-4 rounded-lg font-bold transition ${
             product.stock === 0
-              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              : 'bg-primary-600 text-white hover:bg-primary-700'
+              ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+              : 'bg-brand-green text-white hover:bg-brand-green-dark shadow-md'
           }`}
         >
           {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}

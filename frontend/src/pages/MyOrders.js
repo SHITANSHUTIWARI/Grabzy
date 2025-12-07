@@ -97,8 +97,8 @@ const MyOrders = () => {
                         </p>
                       </div>
                     </div>
-                    <p className="font-semibold">
-                      ${(item.priceAtOrder * item.quantity).toFixed(2)}
+                    <p className="font-bold">
+                      ₹{Math.round(item.priceAtOrder * item.quantity * 83).toLocaleString('en-IN')}
                     </p>
                   </div>
                 ))}
@@ -111,9 +111,9 @@ const MyOrders = () => {
                 <p className="font-medium">{order.paymentMethod}</p>
               </div>
               <div className="text-right">
-                <p className="text-sm text-gray-500">Total Amount</p>
-                <p className="text-2xl font-bold text-primary-600">
-                  ${order.totalAmount.toFixed(2)}
+                <p className="text-sm text-gray-500 font-medium">Total Amount</p>
+                <p className="text-2xl font-bold text-brand-green">
+                  ₹{Math.round(order.totalAmount * 83).toLocaleString('en-IN')}
                 </p>
               </div>
             </div>

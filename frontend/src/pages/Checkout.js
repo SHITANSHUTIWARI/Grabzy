@@ -189,7 +189,7 @@ const Checkout = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-6 bg-primary-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-700 transition disabled:bg-gray-400"
+              className="w-full mt-6 bg-brand-green text-white py-4 rounded-xl font-bold hover:bg-brand-green-dark transition disabled:bg-gray-300 shadow-md text-lg"
             >
               {loading ? 'Placing Order...' : 'Place Order'}
             </button>
@@ -203,11 +203,11 @@ const Checkout = () => {
             <div className="space-y-3 mb-4">
               {cartItems.map((item) => (
                 <div key={item.id} className="flex justify-between text-sm">
-                  <span className="text-gray-600">
+                  <span className="text-gray-600 font-medium">
                     {item.name} x {item.quantity}
                   </span>
-                  <span className="font-semibold">
-                    ${(item.price * item.quantity).toFixed(2)}
+                  <span className="font-bold">
+                    ₹{Math.round(item.price * item.quantity * 83).toLocaleString('en-IN')}
                   </span>
                 </div>
               ))}
@@ -215,17 +215,17 @@ const Checkout = () => {
 
             <div className="border-t pt-3 space-y-2">
               <div className="flex justify-between">
-                <span className="text-gray-600">Subtotal</span>
-                <span className="font-semibold">${getCartTotal().toFixed(2)}</span>
+                <span className="text-gray-600 font-medium">Subtotal</span>
+                <span className="font-bold">₹{Math.round(getCartTotal() * 83).toLocaleString('en-IN')}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Shipping</span>
-                <span className="font-semibold">Free</span>
+                <span className="text-gray-600 font-medium">Shipping</span>
+                <span className="font-bold text-brand-green">Free</span>
               </div>
-              <div className="border-t pt-2 flex justify-between text-lg">
+              <div className="border-t pt-2 flex justify-between text-xl">
                 <span className="font-bold">Total</span>
-                <span className="font-bold text-primary-600">
-                  ${getCartTotal().toFixed(2)}
+                <span className="font-bold text-brand-green">
+                  ₹{Math.round(getCartTotal() * 83).toLocaleString('en-IN')}
                 </span>
               </div>
             </div>

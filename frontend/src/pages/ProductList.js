@@ -137,14 +137,14 @@ const ProductList = () => {
 
               <button
                 onClick={applyFilters}
-                className="w-full bg-primary-600 text-white py-2 rounded-lg hover:bg-primary-700 transition"
+                className="w-full bg-brand-green text-white py-3 rounded-xl hover:bg-brand-green-dark transition font-bold shadow-md"
               >
                 Apply Filters
               </button>
 
               <button
                 onClick={clearFilters}
-                className="w-full bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300 transition"
+                className="w-full bg-white border-2 border-gray-300 text-gray-700 py-3 rounded-xl hover:bg-gray-50 transition font-semibold"
               >
                 Clear Filters
               </button>

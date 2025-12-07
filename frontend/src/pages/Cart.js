@@ -19,10 +19,10 @@ const Cart = () => {
   if (cartItems.length === 0) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
-        <h2 className="text-2xl font-bold mb-4">Your cart is empty</h2>
+        <h2 className="text-3xl font-bold mb-6 text-gray-900">Your cart is empty</h2>
         <Link
           to="/products"
-          className="inline-block bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition"
+          className="inline-block bg-brand-green text-white px-8 py-4 rounded-xl hover:bg-brand-green-dark transition font-bold shadow-md"
         >
           Continue Shopping
         </Link>
@@ -49,32 +49,32 @@ const Cart = () => {
                 />
 
                 <div className="flex-grow ml-4">
-                  <h3 className="text-lg font-semibold text-gray-800">
+                  <h3 className="text-lg font-semibold text-gray-900">
                     {item.name}
                   </h3>
-                  <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                  <p className="text-gray-600 font-medium">₹{Math.round(item.price * 83).toLocaleString('en-IN')}</p>
                 </div>
 
                 <div className="flex items-center space-x-3">
                   <button
                     onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                    className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                    className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 font-semibold"
                   >
                     -
                   </button>
-                  <span className="font-semibold w-8 text-center">
+                  <span className="font-bold w-10 text-center text-lg">
                     {item.quantity}
                   </span>
                   <button
                     onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                    className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                    className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 font-semibold"
                   >
                     +
                   </button>
                 </div>
 
-                <div className="ml-6 text-lg font-bold text-gray-800">
-                  ${(item.price * item.quantity).toFixed(2)}
+                <div className="ml-6 text-xl font-bold text-gray-900">
+                  ₹{Math.round(item.price * item.quantity * 83).toLocaleString('en-IN')}
                 </div>
 
                 <button
@@ -106,31 +106,31 @@ const Cart = () => {
 
             <div className="space-y-3 mb-6">
               <div className="flex justify-between">
-                <span className="text-gray-600">Subtotal</span>
-                <span className="font-semibold">${getCartTotal().toFixed(2)}</span>
+                <span className="text-gray-600 font-medium">Subtotal</span>
+                <span className="font-bold">₹{Math.round(getCartTotal() * 83).toLocaleString('en-IN')}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Shipping</span>
-                <span className="font-semibold">Free</span>
+                <span className="text-gray-600 font-medium">Shipping</span>
+                <span className="font-bold text-brand-green">Free</span>
               </div>
-              <div className="border-t pt-3 flex justify-between text-lg">
+              <div className="border-t pt-3 flex justify-between text-xl">
                 <span className="font-bold">Total</span>
-                <span className="font-bold text-primary-600">
-                  ${getCartTotal().toFixed(2)}
+                <span className="font-bold text-brand-green">
+                  ₹{Math.round(getCartTotal() * 83).toLocaleString('en-IN')}
                 </span>
               </div>
             </div>
 
             <button
               onClick={handleCheckout}
-              className="w-full bg-primary-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-700 transition"
+              className="w-full bg-brand-green text-white py-4 rounded-xl font-bold hover:bg-brand-green-dark transition shadow-md text-lg"
             >
               Proceed to Checkout
             </button>
 
             <Link
               to="/products"
-              className="block text-center mt-4 text-primary-600 hover:text-primary-700"
+              className="block text-center mt-4 text-brand-green hover:text-brand-green-dark font-semibold"
             >
               Continue Shopping
             </Link>
