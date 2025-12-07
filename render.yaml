@@ -6,7 +6,7 @@ services:
     region: singapore
     plan: free
     rootDir: backend
-    buildCommand: npm ci && npx prisma generate --schema=prisma/schema.prisma
+    buildCommand: npm install && npx prisma generate --schema=./prisma/schema.prisma
     startCommand: npm start
     envVars:
       - key: NODE_ENV
