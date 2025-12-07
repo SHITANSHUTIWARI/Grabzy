@@ -11,9 +11,22 @@
     "dev:frontend": "cd frontend && npm start",
     "build:frontend": "cd frontend && npm run build",
     "start:backend": "cd backend && npm start",
-    "seed": "cd backend && npm run seed"
+    "seed": "cd backend && npm run seed",
+    "vercel-build": "cd backend && npm install && npx prisma generate"
   },
   "keywords": ["ecommerce", "react", "nodejs", "express", "mongodb"],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.7.0",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "prisma": "^5.7.0"
+  }
 }
