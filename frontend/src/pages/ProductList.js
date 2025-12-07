@@ -18,22 +18,22 @@ const ProductList = () => {
   });
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const params = Object.fromEntries(searchParams);
+        const response = await getProducts(params);
+        setProducts(response.data.products);
+        setPagination(response.data.pagination);
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
     fetchProducts();
   }, [searchParams]);
-
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      const params = Object.fromEntries(searchParams);
-      const response = await getProducts(params);
-      setProducts(response.data.products);
-      setPagination(response.data.pagination);
-    } catch (error) {
-      console.error('Failed to fetch products:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;

@@ -12,19 +12,19 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await getProductById(id);
+        setProduct(response.data.product);
+      } catch (error) {
+        console.error('Failed to fetch product:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
     fetchProduct();
   }, [id]);
-
-  const fetchProduct = async () => {
-    try {
-      const response = await getProductById(id);
-      setProduct(response.data.product);
-    } catch (error) {
-      console.error('Failed to fetch product:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
