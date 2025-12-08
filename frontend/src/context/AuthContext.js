@@ -21,13 +21,33 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
+      const token = localStorage.getItem('accessToken');
+      if (!token) {
+        setUser(null);
+        setLoading(false);
+        return;
+      }
       const response = await getProfile();
       setUser(response.data.user);
     } catch (error) {
       setUser(null);
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
     } finally {
       setLoading(false);
     }
+  };
+
+  const login = (tokens, userData) => {
+    localStorage.setItem('accessToken', tokens.accessToken);
+    localStorage.setItem('refreshToken', tokens.refreshToken);
+    setUser(userData);
+  };
+
+  const logout = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    setUser(null);
   };
 
   const value = {
@@ -37,6 +57,8 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated: !!user,
     isAdmin: user?.role === 'ADMIN',
     checkAuth,
+    login,
+    logout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

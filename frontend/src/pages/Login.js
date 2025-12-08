@@ -21,7 +21,13 @@ const Login = () => {
 
     try {
       const response = await login(formData);
-      setUser(response.data.user);
+      const { accessToken, refreshToken, user } = response.data;
+      
+      // Store tokens in localStorage
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      
+      setUser(user);
       navigate('/products');
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
