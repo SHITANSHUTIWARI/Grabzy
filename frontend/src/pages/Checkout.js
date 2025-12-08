@@ -6,7 +6,7 @@ import { createOrder } from '../api/orderApi';
 
 const Checkout = () => {
   const { cartItems, getCartTotal, clearCart } = useCart();
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const [shippingAddress, setShippingAddress] = useState({
@@ -21,6 +21,13 @@ const Checkout = () => {
 
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Redirect to login if not authenticated
+  React.useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login?redirect=/checkout');
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleChange = (e) => {
     setShippingAddress({
@@ -53,6 +60,17 @@ const Checkout = () => {
       setLoading(false);
     }
   };
+
+  // Show message if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-6">
+          Redirecting to login...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
