@@ -13,10 +13,17 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       await logout();
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
       setUser(null);
       navigate('/login');
     } catch (error) {
       console.error('Logout failed:', error);
+      // Clear tokens even if API call fails
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      setUser(null);
+      navigate('/login');
     }
   };
 
